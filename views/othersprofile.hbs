@@ -1,0 +1,25 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    {{> mainCss}}
+    <link rel="stylesheet" href="/styles/mainprofile.css">
+    <link rel="stylesheet" href="/styles/othersprofile.css">
+    
+  </head>
+  <body>
+    {{>navbar page="profile" username=username}}
+    <div class="d-flex wrapper">
+      {{>aside}}
+      <div class="main d-flex flex-column align-items-center">
+      {{> othersprofilepartial user=user posts=posts}}
+      </div>
+      {{>asideTwo}}
+    </div>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    {{> bootstrapjs}}
+    <script src="/js/othersprofile.js"></script>
+    <script src="/js/profilefollow.js"></script>
+  </body>
+</html>

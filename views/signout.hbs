@@ -1,0 +1,24 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    {{> mainCss}}
+    <link rel="stylesheet" href="/styles/mainprofile.css">
+    <link rel="stylesheet" href="/styles/login.css" />
+  </head>
+  <body>
+    {{>navbar page="signout"}}
+    <div class="d-flex wrapper">
+      {{>aside}}
+      <div class="main h-75 d-flex justify-content-center align-items-center">
+        {{> signoutform}}
+      
+      </div>
+      {{>asideTwo}}
+    </div>
+    {{> bootstrapjs}}
+    <script src="/js/authentication.js"></script>
+
+  </body>
+</html>

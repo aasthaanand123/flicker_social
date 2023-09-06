@@ -1,0 +1,30 @@
+.addpost-section {
+  width: 60%;
+}
+.addpost-section form {
+  width: 65%;
+  background-color: #f0edcc;
+  border-radius: 6px;
+}
+.addpost-section form .form-control {
+  background-color: #02343f;
+  color: #f0edcc;
+  border: 1px solid #02343f;
+}
+label.post-text {
+  font-weight: 500;
+}
+.form-floating .post-text {
+  color: #f0edcc;
+  font-weight: 400;
+}
+.addpost-section button {
+  background-color: #02343f;
+  color: #f0edcc;
+  border: 1px solid transparent;
+}
+.addpost-section button:hover {
+  background-color: #f0edcc;
+  color: #02343f;
+  border: 1px solid #02343f;
+}

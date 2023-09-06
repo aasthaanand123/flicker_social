@@ -1,0 +1,36 @@
+<form id="carouselExample" class="carousel slide posts"method="post" action="/user/dash/post">
+  <div class="carousel-inner">
+    
+{{!-- active class --}}
+{{#if post}}
+      
+      <button class="carousel-item {{#if post.index}}active{{/if}} p-3" style="display:block;background-color:#f0edcc;border:none;">
+      <input type="hidden" value="{{post._id}}" name="postid">
+      
+      <div class="d-block" >
+      <div class="p-2 info w-100 mb-2">
+      <div><span>Caption: </span>{{post.caption}}</div>
+      
+      <div><span>Description: </span>{{post.description}}</div>
+      {{#if showUsername}}<div><span>Username: </span>{{post.userid.username}}</div>{{/if}}
+      </div>
+      <div class="carousel-img "><img src={{post.imgurl}} alt="image of carousel"></div>
+      </div>
+      
+      </button>
+      </div>
+      </form>
+      
+{{else}}  
+<div class="carousel-item active p-3" style="display:block">
+      <div class="d-block ">
+      <div class="p-2 info w-100 mb-2">
+      <div class="noposts"><span>No Posts available!</span></div>
+      </div>
+      <div class="carousel-img"><img src='https://res.cloudinary.com/ddnofir7e/image/upload/v1693377493/cloudinary-image-nopost_iooewa.jpg' alt="image of carousel"></div>
+      </div>
+      </div>
+        </div>
+</div>
+{{/if}}
+    

@@ -1,0 +1,35 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    {{> mainCss}}
+    <link rel="stylesheet" href="/styles/posts.css">
+    <link rel="stylesheet" href="/styles/modal.css">
+  </head>
+  <body>
+    {{>navbar page="Posts"}}
+    <div class="d-flex wrapper">
+      {{>aside}}
+      
+      {{#if posts}}
+      <div class="posts-section d-flex flex-column align-items-center post-render">
+      {{#each posts as |post|}}
+      {{> mypost post=post}}
+      {{/each}}
+      </div>
+    {{else}}
+    <div class="posts-section d-flex flex-column justify-content-center align-items-center" style="height:40vh;">
+    <div style="color:#f0edcc;font-size:1.2rem">No posts available</div>
+    <a href="/user/dash/addpost" style="color:#f0edcc;font-size:1.4rem">Add a post here</a>
+    </div>
+    {{/if}}
+
+      {{>asideTwo}}
+    </div>
+    {{> bootstrapjs}}
+     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="/js/postUpdDel.js"></script>
+  </body>
+</html>

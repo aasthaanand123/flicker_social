@@ -1,0 +1,22 @@
+
+<button type="button" class=" btn d-flex flex-column align-items-center mypost mb-4" id="a{{post._id}}" data-bs-target="#modal-{{post._id}}">
+  <div class="caption-wrapper w-100 d-flex justify-content-center p-2 "><div
+   class="caption">{{post.caption}}</div></div>
+  <div class="d-flex mt-4 justify-content-between w-100 h-100">
+    <div class="d-flex justify-content-center innerpost">
+      <img src={{post.imgurl}} alt="post-image" />
+    </div>
+    <div class="innerpost d-flex flex-column justify-content-between">
+      <div>
+        <div class="comments description">Description:</div>
+        <div class="descriptiondetails">{{post.description}}</div>
+        <div class="comments">{{post.dateUser}}</div>
+      </div>
+      <div class="d-flex flex-column align-items-center">
+        <a href="#" role="button" class="btn btn-upd w-75 mb-2 mt-2" data-postid={{post._id}}>Update</a>
+        <a href="#" role="button" class="btn btn-del w-75 mb-2" data-postid={{post._id}}>Delete</a>
+      </div>
+    </div>
+  </div>
+</button>
+{{> modal post=post}}

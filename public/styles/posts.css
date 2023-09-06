@@ -1,0 +1,49 @@
+div.posts-section {
+  width: 60%;
+  font-size: 0.9rem;
+}
+div.innerpost {
+  background-color: #02343f;
+  width: 45%;
+  padding: 2%;
+  color: #f0edcc;
+  border-radius: 5px;
+}
+div.innerpost div.comments {
+  font-weight: 500;
+  font-size: 1rem;
+}
+div.innerpost img {
+  width: 85%;
+  border-radius: 5px;
+}
+.btn-upd,
+.btn-del {
+  font-weight: 500;
+  padding: 1%;
+  background-color: #f0edcc;
+  color: #02343f;
+}
+.mypost {
+  width: 60%;
+  background-color: #f0edcc;
+  color: #02343f;
+  padding: 1%;
+  border-radius: 5px;
+  transition: 500ms;
+}
+.caption-wrapper {
+  background-color: #02343f;
+  color: #f0edcc;
+  width: 70%;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 1rem;
+}
+button.mypost:hover {
+  background-color: #f0edcc;
+}
+form.mypost:hover {
+  background-color: #f0edcc;
+  color: #02343f;
+}

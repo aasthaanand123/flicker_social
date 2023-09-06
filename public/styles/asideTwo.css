@@ -1,0 +1,36 @@
+div.headingAside {
+  color: #f0edcc;
+}
+div.asideTwo {
+  width: 30%;
+  height: 65%;
+  position: sticky;
+  top: 10vh;
+}
+div.asideTwoList {
+  width: 65%;
+}
+a.a-list {
+  height: 14%;
+  background-color: #f0edcc;
+  transition: 300ms;
+  font-size: 0.8rem;
+}
+a.a-list:hover {
+  background-color: #02343f;
+  color: #f0edcc;
+}
+img.image-aside {
+  width: 20%;
+  border-radius: 50%;
+}
+div.info {
+  width: 70%;
+  padding: 2%;
+}
+div.name-aside {
+  font-size: 0.7rem;
+}
+div.title-aside {
+  font-weight: 600;
+}

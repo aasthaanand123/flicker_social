@@ -1,0 +1,23 @@
+body {
+  background-color: #f0edcc;
+}
+form {
+  background-color: #02343f;
+  color: #f0edcc;
+  border-radius: 10px;
+
+  width: 27%;
+}
+button.btn.btn-primary {
+  background-color: #f0edcc;
+  color: #02343f;
+  border: none;
+}
+div.alert {
+  background-color: #f0edcc;
+  color: #02343f;
+}
+p.h2 {
+  color: #f0edcc;
+  text-align: center;
+}

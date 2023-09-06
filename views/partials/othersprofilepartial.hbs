@@ -1,0 +1,29 @@
+<div id="a{{user._id}}" class="profilecomp d-flex justify-content-between mb-3 p-3 updform">
+    <div class=" profileimage">
+    {{#if user.imgurl}}<img src="{{user.imgurl}}" alt="profileimage">
+    {{else}}
+    <img src="https://res.cloudinary.com/ddnofir7e/image/upload/v1693717704/person_drgf7l.png" alt="profileimage" class="img-inp">
+    {{/if}}
+    </div>
+    <div class="profiledetails justify-content-between d-flex flex-column">
+        <div class=" d-flex flex-column">
+        <div><span>Username: </span> <span class="user-inp">{{user.username}}</span></div>
+        <div><span>Password: </span><span>Not visible</span></div>
+        </div>
+        {{#if show}}
+        <div class="align-self-end"><button class="btn btn-primary updbtn" type="click">Update</button></div>
+        {{/if}}
+        {{#if follow}}
+        <div class="d-flex flex-column">
+    <div class="align-self-end"><button class="btn btn-primary followingbtn {{#if showfollowing}} {{else}}hide{{/if}}" type="click" data-userid="{{user._id}}">Following</button></div>
+    <div class="align-self-end"><button class="btn btn-primary followbtn {{#if showfollow}} {{else}}hide{{/if}}" type="click" data-userid="{{user._id}}">Follow</button></div>
+    
+        </div>
+        {{/if}}
+    </div>
+</div>
+<div class="d-flex flex-column align-items-center w-100">
+    {{#each posts as |post|}}
+        {{>otherpostpartial post=post}}
+    {{/each}}
+</div>

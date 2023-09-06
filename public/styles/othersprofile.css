@@ -1,0 +1,32 @@
+.profilecomp {
+  background-color: #f0edcc;
+  border-radius: 10px;
+  width: 70%;
+}
+.profileimage,
+.profiledetails {
+  padding: 2%;
+  background-color: #02343f;
+  border-radius: 10px;
+}
+.profiledetails {
+  width: 65%;
+  color: #f0edcc;
+}
+form.profilecomp .user-inp {
+  height: 45%;
+  width: 60%;
+}
+form.profilecomp .img-inp {
+  color: #f0edcc;
+}
+.profileimage {
+  width: 32%;
+}
+.profileimage img {
+  width: 100%;
+  object-fit: contain;
+}
+.hide {
+  display: none;
+}

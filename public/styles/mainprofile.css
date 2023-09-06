@@ -1,0 +1,137 @@
+/* main styling */
+div.main {
+  width: 60%;
+}
+div.main .carousel {
+  width: 70%;
+  background-color: #f0edcc;
+  border-radius: 10px;
+}
+.carousel-inner {
+  background-color: #f0edcc;
+  border: none;
+  border-radius: 10px;
+}
+.carousel-item {
+  height: 450px;
+}
+.d-block {
+  background-color: transparent;
+  border: none;
+  width: 100%;
+}
+.feedback {
+  background-color: #f0edcc;
+  width: 70%;
+  border-radius: 5px;
+  margin-top: 2%;
+}
+.feedback button {
+  border: none;
+  background-color: #02343f;
+  color: #f0edcc;
+}
+.feedback div.btn-like,
+.feedback div.btn-dislike {
+  background-color: #02343f;
+  cursor: auto;
+}
+.noposts {
+  text-align: center;
+}
+.carousel-img {
+  background-color: #02343f;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+.carousel img {
+  height: 300px;
+  min-width: 80%;
+  max-width: 90%;
+  object-fit: contain;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.carousel .info {
+  background-color: #02343f;
+  color: #f0edcc;
+  border-radius: 5px;
+}
+.info div span {
+  font-weight: 500;
+}
+div.people {
+  width: 70%;
+}
+ul.people-types {
+  width: 100%;
+  font-size: 0.8rem;
+}
+.pp-list {
+  list-style-type: none;
+  background-color: #02343f;
+  border-radius: 10px;
+  border: 1px solid #f0edcc;
+  color: #f0edcc;
+  width: 15%;
+  text-align: center;
+  padding: 2%;
+  transition: 300ms;
+}
+.pp-list.active {
+  background-color: #f0edcc;
+  border: 1px solid #02343f;
+}
+.pp-list.active a {
+  color: #02343f;
+}
+.pp-list a {
+  text-decoration: none;
+  color: #f0edcc;
+}
+.pp-list:hover {
+  background-color: #f0edcc;
+  cursor: pointer;
+}
+.pp-list:hover a,
+.pp-list:hover {
+  color: #02343f;
+}
+
+.suggestionOne {
+  width: 100%;
+  height: 100%;
+}
+div.suggestions {
+  width: 100%;
+  height: 270px;
+}
+
+div.card {
+  width: 48%;
+  height: 50%;
+  transition: 300ms;
+}
+div.card:hover {
+  background-color: #02343f;
+  color: #f0edcc;
+  border-color: #f0edcc;
+}
+div.card:hover button.card-text {
+  background-color: transparent;
+  color: #f0edcc;
+}
+img.cardImg {
+  border-radius: 50%;
+}
+div.cardBody {
+  padding: 0;
+}
+button.card-text {
+  background-color: transparent;
+  border: none;
+  font-weight: 500;
+  color: #02343f;
+  text-decoration: underline;
+}

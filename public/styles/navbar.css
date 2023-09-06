@@ -1,0 +1,67 @@
+html {
+  font-size: 1.1rem;
+}
+ul.navbar-nav {
+  width: 85%;
+}
+nav.navbar {
+  background-color: #02343f;
+  color: #f0edcc;
+}
+a.navbar-brand,
+.nav-link {
+  color: #f0edcc;
+}
+input.form-control {
+  height: 80%;
+}
+div.icons a {
+  color: #f0edcc;
+}
+div.icons a:hover {
+  color: black;
+}
+
+div.name:hover {
+  color: black;
+  cursor: pointer;
+}
+button.btn-nav {
+  color: #f0edcc;
+}
+button.btn-nav:focus {
+  color: #f0edcc;
+  border: none;
+}
+button.btn-nav:hover {
+  color: #f0edcc;
+  border: none;
+}
+ul.dropdown-menu.menu-options.show {
+  font-size: 0.8rem;
+  background-color: transparent;
+  border: none;
+}
+ul.menu-options li {
+  background-color: #f0edcc;
+}
+ul.menu-options li:first-child {
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+}
+ul.menu-options li:last-child {
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+ul.menu-options li:hover form {
+  background-color: #02343f;
+}
+ul.menu-options li:hover button {
+  color: #f0edcc;
+}
+ul.menu-options .dropdown-item button {
+  background-color: transparent;
+  color: #02343f;
+  border: none;
+  font-weight: 500;
+}

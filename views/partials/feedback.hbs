@@ -1,0 +1,55 @@
+<div class="feedback d-flex justify-content-between p-2">
+  <div class="d-flex w-25 justify-content-between">
+    <form
+      action="/user/dash/postdata/like"
+      method="post"
+      class="m-0 d-flex align-items-center likeform"
+    >
+      <input
+        type="text"
+        style="display: none;"
+        value="{{post._id}}"
+        name="postid"
+        class="postid"
+      />
+
+      <button type="submit" class="btn btn-like">👍🏻</button>
+      <div class="ms-1 likeshow">{{post.likes}}</div>
+    </form>
+    <form
+      action="/user/dash/postdata/dislike"
+      method="post"
+      class="m-0 d-flex align-items-center dislikeform"
+    >
+      <input
+        type="text"
+        style="display: none;"
+        value="{{post._id}}"
+        name="postid"
+      />
+      <button type="submit" class="btn btn-dislike">👎🏻</button>
+      <div class="ms-1 dislikeshow">{{post.dislikes}}</div>
+    </form>
+  </div>
+  <form
+    action="/user/dash/postdata/comment"
+    method="post"
+    class="m-0 d-flex justify-content-between commentform"
+    style="width:50%;"
+  >
+    <input
+      type="text"
+      name="comment"
+      class="form-control h-100 comment"
+      style="width:70%;"
+      placeholder="enter comment:"
+      autocomplete="off"
+    />
+    <input
+      type="text"
+      style="display: none;"
+      value="{{post._id}}"
+      name="postid"
+    />
+    <button type="submit" class="btn btn-comment">Submit</button></form>
+</div>

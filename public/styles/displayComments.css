@@ -1,0 +1,13 @@
+.displayComments {
+  background-color: #f0edcc;
+  width: 70%;
+  border-radius: 5px;
+}
+.commentInd {
+  background-color: #02343f;
+  color: #f0edcc;
+  border-radius: 5px;
+}
+.commentInd div {
+  margin-left: 2%;
+}

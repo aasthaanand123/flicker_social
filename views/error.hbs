@@ -1,0 +1,19 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    {{> mainCss}}
+  </head>
+  <body>
+    {{>navbar page="Posts"}}
+    <div class="d-flex wrapper">
+      {{>aside}}
+      <div class="posts-section d-flex flex-column align-items-center">
+      <h3>{{error}}</h3>
+      </div>
+      {{>asideTwo}}
+    </div>
+    {{> bootstrapjs}}
+  </body>
+</html>

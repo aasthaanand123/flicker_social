@@ -1,0 +1,21 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    {{> mainCss}}
+    <link rel="stylesheet" href="/styles/mainprofile.css">
+    <link rel="stylesheet" href="/styles/displayComments.css">
+  </head>
+  <body>
+    {{>navbar page="discover"}}
+    <div class="d-flex wrapper">
+      {{>aside}}
+      <div class="main d-flex flex-column align-items-center">
+      {{> discovercomp username=username posts=posts gap=gap feedback=feedback}}
+      </div>
+      {{>asideTwo}}
+    </div>
+    {{> bootstrapjs}}
+  </body>
+</html>

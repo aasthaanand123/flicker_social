@@ -1,0 +1,24 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    {{> mainCss}}
+    <link rel="stylesheet" href="/styles/mainprofile.css">
+    <link rel="stylesheet" href="/styles/displayComments.css">
+    
+  </head>
+  <body>
+    {{>navbar page="post"}}
+    <div class="d-flex wrapper">
+      {{>aside}}
+      <div class="main d-flex flex-column align-items-center">
+      {{>carouselpostpartial post=post showUsername="true"}}
+      </div>
+      {{>asideTwo}}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/js/updatefeedback.js"></script>
+    {{> bootstrapjs}}
+  </body>
+</html>

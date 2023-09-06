@@ -1,0 +1,70 @@
+<div id="carouselExample" class="carousel slide posts">
+  <div class="carousel-inner">
+    
+{{!-- active class --}}
+{{#if posts}}
+      {{#each posts as |post|}}
+      <form class="carousel-item {{#if post.index}}active{{/if}} p-3" method="post" action="/user/dash/post" >
+      <input type="text" name="postid" value="{{post._id}}" style="display:none;">
+      <button class="d-block" type="submit">
+      <div class="p-2 info w-100 mb-2">
+      <div><span>Caption: </span>{{post.caption}}</div>
+      
+      <div><span>Description: </span>{{post.description}}</div>
+      <div><span>Username: </span>{{post.userid.username}}</div>
+      </div>
+      <div class="carousel-img "><img src={{post.imgurl}} alt="image of carousel"></div>
+      </button>
+      </form>
+      {{/each}}
+{{else}}  
+<div class="carousel-item active p-3">
+      <div class="d-block ">
+      <div class="p-2 info w-100 mb-2">
+      <div class="noposts"><span>No Posts available!</span></div>
+      </div>
+      <div class="carousel-img"><img src='https://res.cloudinary.com/ddnofir7e/image/upload/v1693377493/cloudinary-image-nopost_iooewa.jpg' alt="image of carousel"></div>
+      </div>
+      </div>
+{{/if}}
+    
+  </div>
+  {{#if posts}}
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExample"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExample"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+  {{/if}}
+</div>
+
+<div class="people d-flex flex-column justify-content-center align-items-center mt-3">
+
+    <ul class=" people-types d-flex flex-wrap flex-row p-0 justify-content-between">
+  <li class="pp-list " aria-current="true"><a href="#">For You</a></li>
+  <li class="pp-list  "><a href="#">Trending</a></li>
+  <li class="pp-list active"><a href="#">New</a></li>
+  <li class="pp-list  "><a href="#">Shuffle</a></li>
+  <li class="pp-list  "><a href="#">Following</a></li>
+</ul>
+<div class="suggestions align-self-start">
+  <div class="suggestionOne d-flex flex-row flex-wrap justify-content-between">
+  {{#each persons as |person|}}
+  {{>personCard person=person}}
+  {{/each}}
+    </div>
+</div>
+</div>

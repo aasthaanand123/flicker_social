@@ -1,0 +1,14 @@
+<div class="d-flex flex-column" style="width:60%">
+  {{#each tickets as |ticket|}}
+    <div
+      class="w-100 ticketind d-flex justify-content-center align-items-center mb-3"
+    >
+      <div class="innerticket">
+        <div><span>Title </span> {{ticket.title}}</div>
+        <div><span>Description </span>{{ticket.description}}</div>
+        <div><span>Date posted </span>{{ticket.dateUser}}</div>
+        <div><span>Resolved Status </span>{{ticket.resolved}}</div>
+      </div>
+    </div>
+  {{/each}}
+</div>

@@ -1,0 +1,30 @@
+<div class="card mb-3 p-2">
+  <div class="row g-0">
+    <div class="col-md-4">
+      {{#if person.imgurl}}
+        <img
+          src={{person.imgurl}}
+          class="img-fluid cardImg"
+          alt="image of person"
+        />
+      {{else}}
+        <img
+          src="https://res.cloudinary.com/ddnofir7e/image/upload/v1693717704/person_drgf7l.png"
+          class="img-fluid cardImg"
+          alt="image of person"
+        />
+      {{/if}}
+    </div>
+    <div class="col-md-8">
+      <div class="card-body cardBody ms-2">
+        <h6 class="card-title">{{person.username}}</h6>
+        <p class="card-text">{{person.dateUser}}
+        </p>
+        <form action="/user/dash/visitProfile" method="post">
+          <input type="hidden" value="{{person._id}}" name="userid" />
+          <button class="card-text" type="text">See Details</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

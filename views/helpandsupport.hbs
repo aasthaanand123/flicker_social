@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {{> mainCss}}
+    <link rel="stylesheet" href="/styles/addpost.css">
+</head>
+<body>
+    
+    {{>navbar page="Help and Support"}}
+    <div class="d-flex wrapper">
+      {{>aside}}
+      <div class="addpost-section d-flex justify-content-center align-items-center">
+        {{>helpform}}
+      </div>
+      {{>asideTwo}}
+    </div>
+    {{> bootstrapjs}}
+  
+</body>
+</html>
