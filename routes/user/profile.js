@@ -34,7 +34,10 @@ router.post(
 router.get("/getTicket", profilecontroller.getTicket);
 router.post("/follow", profilecontroller.postfollow);
 router.post("/unfollow", profilecontroller.postunfollow);
+router.post("/cancelrequest",profilecontroller.postcancelrequest)
 router.get("/pendingrequests", profilecontroller.getpendingrequests);
 router.post("/acceptreq", profilecontroller.postacceptreq);
 router.post("/declinereq", profilecontroller.postdeclinereq);
+router.get("/chatssection",profilecontroller.getchats);
+router.post("/chat",profilecontroller.postchat)
 module.exports = router;

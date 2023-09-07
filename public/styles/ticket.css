@@ -1,17 +1,30 @@
-.innerticket {
+div.innerticket {
   background-color: #02343f;
   color: #f0edcc;
   border-radius: 10px;
   padding: 2%;
   width: 95%;
 }
-.ticketind div span {
+.ticketind div span{
   font-weight: 500;
   font-size: 1.2rem;
 }
-.ticketind {
+.ticketind,form.innerticket{
   background-color: #f0edcc;
   color: #02343f;
   border-radius: 10px;
   padding: 1%;
+}
+form.innerticket{
+  width:95%;
+}
+form.innerticket button{
+  width:20%;
+  background-color:#02343f;
+  border-color:#f0edcc;
+}
+form.innerticket button:hover{
+  background-color: #f0edcc;
+  border-color:#02343f;
+  color:#02343f;
 }

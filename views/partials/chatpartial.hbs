@@ -1,0 +1,12 @@
+<div class="d-flex flex-column align-items-center" style="width:60%">
+  {{#each users as |user|}}
+    <div
+      class="w-75 ticketind d-flex justify-content-center align-items-center mb-3"
+    >
+      <form class="innerticket d-flex flex-column" method="post" action="/user/dash/chat">
+        <div><span>Username: </span> {{user.username}}</div>
+        <div><button type="submit" data-userid="{{user._id}}" class="btn mt-2 btn-primary">Chat</button></div>
+      </form>
+    </div>
+  {{/each}}
+</div>

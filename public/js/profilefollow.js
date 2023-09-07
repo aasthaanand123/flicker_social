@@ -37,3 +37,16 @@ followingbtn.addEventListener("click", (ev) => {
       console.log(err);
     });
 });
+requestedbtn.addEventListener("click",function(ev){
+  let userid=requestedbtn.getAttribute("data-userid");
+  axios.post(createUrl("user/dash/cancelrequest"),{
+    userid:userid,
+  }).then((response)=>{
+    if(response.data==true){
+      followbtn.classList.remove("hide");
+      requestedbtn.classList.add("hide");
+    }
+  }).catch((err)=>{
+    console.log(err)
+  })
+})

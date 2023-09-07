@@ -263,6 +263,24 @@ module.exports.postunfollow = async (req, res, next) => {
     next();
   }
 };
+module.exports.postcancelrequest=async (req, res, next) => {
+  try {
+    let userid = req.body.userid;
+    req.user.requested= req.user.requested.filter(
+      (id) => !id.equals(userid)
+    );
+    await req.user.save();
+    let userupd = await user.findOne({ _id: userid });
+    userupd.requesting= userupd.requesting.filter(
+      (id) => !id.equals(req.user._id)
+    );
+    userupd.save();
+    res.json(true);
+  } catch (err) {
+    req.flash("info", `${err}`);
+    next();
+  }
+};
 module.exports.getpendingrequests = async (req, res, next) => {
   try {
     let usershow = await user
@@ -311,7 +329,33 @@ module.exports.postdeclinereq = async (req, res, next) => {
       (id) => !id.equals(req.user._id)
     );
     userupd.save();
+    // give some notification that requesting user has been declined to follow
+    // in chat/notifications
     res.redirect("/user/dash/pendingrequests");
+  } catch (err) {
+    req.flash("info", `${err}`);
+    next();
+  }
+};
+module.exports.getchats= async (req, res, next) => {
+  try {
+    if(req.user){
+      let usersfollowers=await user.find({_id:req.user._id}).populate("following");
+      res.render("chats",{
+        username:req.user.username,
+          users:usersfollowers,
+      })
+    }
+  
+  } catch (err) {
+    req.flash("info", `${err}`);
+    next();
+  }
+};
+module.exports.postchat=async (req, res, next) => {
+  try {
+    
+  
   } catch (err) {
     req.flash("info", `${err}`);
     next();

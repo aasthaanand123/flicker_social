@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const http = require('http');
+const server = http.createServer(app);
 const path = require("path");
 const PORT = 4321;
 const mongoose = require("mongoose");
@@ -37,7 +39,7 @@ app.use("/user/dash", profileRouter);
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
       console.log(`server is started at http://localhost:${PORT}`);
     });
   })
