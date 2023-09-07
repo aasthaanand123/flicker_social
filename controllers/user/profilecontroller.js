@@ -85,16 +85,27 @@ module.exports.postVisitProfile = async (req, res, next) => {
         ],
       })
       .exec();
-    let isInArray = usershow.followers.some(function (follower) {
+    let isInArrayfollower = usershow.followers.some(function (follower) {
       return follower.equals(req.user._id);
     });
-    if (isInArray) {
+    let isInArrayRequested = usershow.requesting.some(function (follower) {
+      return follower.equals(req.user._id);
+    });
+    if (isInArrayfollower) {
       res.render("othersprofile", {
         username: req.user.username,
         user: usershow,
         posts: usershow.posts,
         follow: true,
         showfollowing: true,
+      });
+    } else if (isInArrayRequested) {
+      res.render("othersprofile", {
+        username: req.user.username,
+        user: usershow,
+        posts: usershow.posts,
+        follow: true,
+        showrequesting: true,
       });
     } else {
       res.render("othersprofile", {
@@ -220,9 +231,11 @@ module.exports.getTicket = async (req, res, next) => {
 module.exports.postfollow = async (req, res, next) => {
   try {
     let { userid } = req.body;
-    req.user.following.push(userid);
+    console.log(userid);
+    req.user.requested.push(userid);
     let upduser = await user.findOne({ _id: userid });
-    upduser.followers.push(req.user._id);
+    console.log(upduser.username);
+    upduser.requesting.push(req.user._id);
     await upduser.save();
     await req.user.save();
     res.json(true);
@@ -245,6 +258,60 @@ module.exports.postunfollow = async (req, res, next) => {
     await upduser.save();
 
     res.json(true);
+  } catch (err) {
+    req.flash("info", `${err}`);
+    next();
+  }
+};
+module.exports.getpendingrequests = async (req, res, next) => {
+  try {
+    let usershow = await user
+      .findOne({ _id: req.user._id })
+      .populate("requesting");
+    console.log(usershow);
+    res.render("pendingrequests", {
+      username: req.user.username,
+      requests: usershow.requesting,
+    });
+  } catch (err) {
+    req.flash("info", `${err}`);
+    next();
+  }
+};
+module.exports.postacceptreq = async (req, res, next) => {
+  try {
+    let userid = req.body.userid;
+    req.user.requesting = req.user.requesting.filter(
+      (id) => !id.equals(userid)
+    );
+    req.user.followers.push(userid);
+    await req.user.save();
+    let userupd = await user.findOne({ _id: userid });
+    userupd.requested = userupd.requested.filter(
+      (id) => !id.equals(req.user._id)
+    );
+    userupd.following.push(req.user._id);
+    userupd.save();
+    res.redirect("/user/dash/pendingrequests");
+    // send notification or message: not accepted by --
+  } catch (err) {
+    req.flash("info", `${err}`);
+    next();
+  }
+};
+module.exports.postdeclinereq = async (req, res, next) => {
+  try {
+    let userid = req.body.userid;
+    req.user.requesting = req.user.requesting.filter(
+      (id) => !id.equals(userid)
+    );
+    await req.user.save();
+    let userupd = await user.findOne({ _id: userid });
+    userupd.requested = userupd.requested.filter(
+      (id) => !id.equals(req.user._id)
+    );
+    userupd.save();
+    res.redirect("/user/dash/pendingrequests");
   } catch (err) {
     req.flash("info", `${err}`);
     next();

@@ -21,5 +21,17 @@ const userSchema = new Schema({
   ],
   dateofjoining: { type: Date, default: Date.now },
   dateUser: { type: String, required: true },
+  requested: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+    },
+  ],
+  requesting: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+    },
+  ],
 });
 module.exports = mongoose.model("user", userSchema);

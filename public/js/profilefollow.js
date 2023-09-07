@@ -1,5 +1,6 @@
 const followbtn = document.querySelector(".followbtn");
 const followingbtn = document.querySelector(".followingbtn");
+const requestedbtn = document.querySelector(".requestedbtn");
 function createUrl(appendData) {
   return `http://localhost:4321/${appendData}`;
 }
@@ -12,7 +13,7 @@ followbtn.addEventListener("click", function (ev) {
     .then((response) => {
       if (response.data == true) {
         followbtn.classList.add("hide");
-        followingbtn.classList.remove("hide");
+        requestedbtn.classList.remove("hide");
       }
     })
     .catch((err) => {

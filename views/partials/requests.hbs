@@ -1,0 +1,33 @@
+<div class="d-flex flex-column" style="width:60%">
+ {{#if requests}}
+  {{#each requests as |request|}}
+    <div
+      class="w-100 ticketind d-flex justify-content-center align-items-center mb-3"
+    >
+      <div class="innerticket">
+        <div><span>Username: </span>{{request.username}}</div>
+        {{#if request.imgurl}}
+        <div class="w-25 mt-2 mb-2"><img src="{{request.imgurl}}" alt="img" class="w-100"/></div>
+        {{/if}}
+        <div class="d-flex mt-2">
+          <form action="/user/dash/acceptreq" method="post" class="m-0 me-2">
+            <input type="hidden" value="{{request._id}}" name="userid" />
+            <button type="submit" class="btn btn-primary">Accept</button>
+          </form>
+          <form action="/user/dash/declinereq" method="post">
+            <input type="hidden" value="{{request._id}}" name="userid" class="m-0"/>
+            <button type="submit" class="btn btn-primary">Decline</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+  </div>
+  {{else}}
+  <div>
+    <div class="d-flex flex-column justify-content-center align-items-center" style="height:40vh;">
+    <div style="color:#f0edcc;font-size:1.2rem">No requests!</div>
+  </div>
+</div>
+</div>
+  {{/if}}

@@ -5,7 +5,7 @@ const upload = multer({});
 const signUpcontroller = require("../../controllers/user/signup");
 const postcontroller = require("../../controllers/user/postcontroller");
 const profilecontroller = require("../../controllers/user/profilecontroller");
-
+const user = require("../../models/user");
 router.get("/profile", signUpcontroller.getProfile);
 router.get("/addpost", signUpcontroller.getaddpost);
 
@@ -34,4 +34,7 @@ router.post(
 router.get("/getTicket", profilecontroller.getTicket);
 router.post("/follow", profilecontroller.postfollow);
 router.post("/unfollow", profilecontroller.postunfollow);
+router.get("/pendingrequests", profilecontroller.getpendingrequests);
+router.post("/acceptreq", profilecontroller.postacceptreq);
+router.post("/declinereq", profilecontroller.postdeclinereq);
 module.exports = router;
