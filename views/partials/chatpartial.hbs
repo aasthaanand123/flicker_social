@@ -1,12 +1,21 @@
 <div class="d-flex flex-column align-items-center" style="width:60%">
+  {{#if users}}
   {{#each users as |user|}}
     <div
       class="w-75 ticketind d-flex justify-content-center align-items-center mb-3"
     >
       <form class="innerticket d-flex flex-column" method="post" action="/user/dash/chat">
         <div><span>Username: </span> {{user.username}}</div>
-        <div><button type="submit" data-userid="{{user._id}}" class="btn mt-2 btn-primary">Chat</button></div>
+        <input type="hidden" value="{{user._id}}" name="userid"/>
+        <div><button type="submit" class="btn mt-2 btn-primary">Chat</button></div>
       </form>
     </div>
   {{/each}}
+  {{else}}
+  <div>
+    <div class="d-flex flex-column justify-content-center align-items-center" style="height:40vh;">
+    <div style="color:#f0edcc;font-size:1.2rem">Following no one!</div>
+  </div>
+  </div>
+  {{/if}}
 </div>

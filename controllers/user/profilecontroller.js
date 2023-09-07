@@ -8,6 +8,7 @@ cloudinary.config({
 const post = require("../../models/post");
 const user = require("../../models/user");
 const issues = require("../../models/issues");
+const messages = require("../../models/messages");
 module.exports.postaddpost = async (req, res, next) => {
   let { caption, comments } = req.body;
   let userid = req.user._id;
@@ -340,19 +341,35 @@ module.exports.postdeclinereq = async (req, res, next) => {
 module.exports.getchats= async (req, res, next) => {
   try {
     if(req.user){
-      let usersfollowers=await user.find({_id:req.user._id}).populate("following");
+      let usersfollowing=await user.findOne({_id:req.user._id}).populate("following");
       res.render("chats",{
         username:req.user.username,
-          users:usersfollowers,
+        users:usersfollowing.following,
       })
     }
-  
+    
   } catch (err) {
     req.flash("info", `${err}`);
     next();
   }
 };
 module.exports.postchat=async (req, res, next) => {
+  try {
+    let userid=req.body.userid;
+    let usershow=await user.findOne({_id:userid});
+    let messagessent=await messages.find({sender:req.user._id,receiver: userid});
+    res.render("chatindividual",{
+      username:req.user.username,
+      receiver:usershow,
+      messages:messagessent,
+    })
+  
+  } catch (err) {
+    req.flash("info", `${err}`);
+    next();
+  }
+};
+module.exports.addmessage=async (req, res, next) => {
   try {
     
   
