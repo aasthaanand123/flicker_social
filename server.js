@@ -1,9 +1,10 @@
 const express = require("express");
-const { createServer } = require("http");
-const { Server } = require("socket.io");
 const app = express();
+const { Server } = require("socket.io");
+const { createServer } = require("http");
 const httpServer = createServer(app);
 const io = new Server(httpServer, { /* options */ });
+module.exports = { io };
 const path = require("path");
 const PORT = 4321;
 const mongoose = require("mongoose");
@@ -48,3 +49,4 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+module.exports.io=io;

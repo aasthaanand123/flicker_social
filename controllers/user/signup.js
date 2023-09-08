@@ -42,9 +42,9 @@ module.exports.getProfile = async (req, res, next) => {
     if (req.user) {
       const followingIds = req.user.following.map((id) => id.toString());
       let users = await user
-        .find({ _id: { $ne: req.user._id } })
-        .limit(4)
+        .find({ _id: { $ne: req.user._id, $in: followingIds}})
         .sort({ dateofjoining: "desc" })
+        .limit(4)
         .exec();
       let posts = await post
         .find({ userid: { $in: followingIds } })
@@ -64,6 +64,7 @@ module.exports.getProfile = async (req, res, next) => {
         password: req.user.password,
         persons: users,
         posts: posts,
+        user:req.user,
       });
     } else {
       res.redirect("/user/auth/login");

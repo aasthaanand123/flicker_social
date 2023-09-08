@@ -9,6 +9,8 @@ const post = require("../../models/post");
 const user = require("../../models/user");
 const issues = require("../../models/issues");
 const messages = require("../../models/messages");
+const socketids=require("../../models/socketids")
+const {io}=require("../../server");
 module.exports.postaddpost = async (req, res, next) => {
   let { caption, comments } = req.body;
   let userid = req.user._id;
@@ -151,8 +153,6 @@ module.exports.postUpdateProfile = async (req, res, next) => {
           if (error) {
             throw new Error(error.message);
           }
-          console.log(req.user);
-          console.log(result);
           req.user.imgurl = result.url;
           req.user.username = userinp;
           await req.user.save();
@@ -235,7 +235,6 @@ module.exports.postfollow = async (req, res, next) => {
     console.log(userid);
     req.user.requested.push(userid);
     let upduser = await user.findOne({ _id: userid });
-    console.log(upduser.username);
     upduser.requesting.push(req.user._id);
     await upduser.save();
     await req.user.save();
@@ -287,7 +286,6 @@ module.exports.getpendingrequests = async (req, res, next) => {
     let usershow = await user
       .findOne({ _id: req.user._id })
       .populate("requesting");
-    console.log(usershow);
     res.render("pendingrequests", {
       username: req.user.username,
       requests: usershow.requesting,
@@ -360,6 +358,7 @@ module.exports.postchat=async (req, res, next) => {
     let messagessent=await messages.find({sender:req.user._id,receiver: userid});
     res.render("chatindividual",{
       username:req.user.username,
+      sender:req.user,
       receiver:usershow,
       messages:messagessent,
     })
@@ -369,12 +368,34 @@ module.exports.postchat=async (req, res, next) => {
     next();
   }
 };
-module.exports.addmessage=async (req, res, next) => {
-  try {
-    
+io.on('connection', (socket) => {
+  const socketid=socket.id;
   
-  } catch (err) {
-    req.flash("info", `${err}`);
-    next();
-  }
-};
+  socket.on('user-connected', async(data) => {
+    const userid = data.userid;
+    let createsocket=await socketids.create({
+    userid:userid,
+    socketid:socketid,
+  })
+  await createsocket.save();
+  console.log(createsocket);
+    socket.on('chat-message', async (inputvalue) => {
+      try {
+        let {sender,receiver,msg}=inputvalue;
+        const newMessage = await messages.create({
+          sender:sender,
+          receiver:receiver,
+          message:msg,
+        })
+        await newMessage.save();
+        // emit only to sender and receiver?
+        io.emit('added-message', newMessage);
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  });
+
+
+  
+});

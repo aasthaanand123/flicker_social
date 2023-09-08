@@ -11,7 +11,7 @@ const messageSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "user",
   },
-  imgurl: { type: String, required: true },
+  imgurl: { type: String},
   message:{type:String, required:true}},
   {
     timestamps: {
