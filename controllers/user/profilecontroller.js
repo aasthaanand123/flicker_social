@@ -11,6 +11,7 @@ const issues = require("../../models/issues");
 const messages = require("../../models/messages");
 const socketids=require("../../models/socketids")
 const {io}=require("../../server");
+const { ObjectId } = require("mongodb");
 module.exports.postaddpost = async (req, res, next) => {
   let { caption, comments } = req.body;
   let userid = req.user._id;
@@ -358,6 +359,7 @@ module.exports.postchat=async (req, res, next) => {
     let messagessent=await messages.find({sender:req.user._id,receiver: userid});
     res.render("chatindividual",{
       username:req.user.username,
+      user:req.user,
       sender:req.user,
       receiver:usershow,
       messages:messagessent,
@@ -370,32 +372,32 @@ module.exports.postchat=async (req, res, next) => {
 };
 io.on('connection', (socket) => {
   const socketid=socket.id;
-  
-  socket.on('user-connected', async(data) => {
-    const userid = data.userid;
-    let createsocket=await socketids.create({
-    userid:userid,
-    socketid:socketid,
+  socket.on("user-connected",async(value)=>{
+      let createsocket=await socketids.create({
+        userid:value,
+        socketid:socketid,
+      })
+      await createsocket.save();
+      socket.emit("user-socket-recorded");
   })
-  await createsocket.save();
-  console.log(createsocket);
-    socket.on('chat-message', async (inputvalue) => {
-      try {
-        let {sender,receiver,msg}=inputvalue;
-        const newMessage = await messages.create({
-          sender:sender,
-          receiver:receiver,
-          message:msg,
-        })
-        await newMessage.save();
-        // emit only to sender and receiver?
-        io.emit('added-message', newMessage);
-      } catch (error) {
-        console.log(error);
-      }
-    });
-  });
-
-
   
+
+  socket.on('chat-message', async (inputvalue) => {
+    try {
+      let {sender,receiver,msg}=inputvalue;
+      const newMessage = await messages.create({
+        sender:sender,
+        receiver:receiver,
+        message:msg,
+      })
+      await newMessage.save();
+
+      socket.emit('added-message', newMessage);
+    } catch (error) {
+      console.log(error);
+    }
+  });
+  socket.on("disconnect",async(userid)=>{
+    await socketids.deleteOne({userid:userid});
+  })
 });

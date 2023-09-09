@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const passport = require("../../auth/passport");
 const signUpcontroller = require("../../controllers/user/signup");
+const socketUserMap = new Map();
 
 router.get(
   "/signup",
@@ -20,6 +21,7 @@ router.post(
     failureRedirect: "/user/auth/login",
     failureFlash: "Invalid username or password",
   }),
+
   function (req, res) {
     res.redirect("/user/dash/profile");
   }

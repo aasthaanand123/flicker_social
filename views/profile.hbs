@@ -13,13 +13,11 @@
       {{>aside}}
       <div class="main d-flex flex-column align-items-center">
       {{>main}}
-      <input type="hidden" value="{{user._id}}" name="userid" class="userid">
       </div>
       {{>asideTwo}}
     </div>
     {{> bootstrapjs}}
     {{!-- should be done at the time of authentication only not again and again --}}
-        <script src="/socket.io/socket.io.js"></script>
     <script type="module" src="/js/connecttosocket.js"></script>
   </body>
 </html>

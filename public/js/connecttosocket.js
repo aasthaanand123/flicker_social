@@ -1,6 +1,5 @@
 const socket = io();
 const userid=document.querySelector('.userid')
 socket.on("connect", () => {
-    socket.emit("user-connected", { userid: userid.value });
+  socket.emit("user-connected",userid.value);
   })
-  export default socket;
