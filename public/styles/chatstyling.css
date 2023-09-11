@@ -10,13 +10,16 @@ div.chatheading,
     color:#f0edcc;
     border-radius:10px;
     padding:1%;
+    width:100%;
 }
 .chatshow{
-    padding:2%;
+    padding:1%;
+    min-height:50vh;
 }
 form.chatbox{
-    background-color: #02343f;
-    color:#f0edcc;
+    
+    color: #02343f;
+    background-color:#f0edcc;
 }
 div.chatheading span{
     font-weight: 600;
