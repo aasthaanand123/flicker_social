@@ -11,21 +11,37 @@ module.exports.alreadySignedIn = (req, res, next) => {
   }
 };
 module.exports.getSignUp = (req, res, next) => {
-  res.render("signup");
+  res.render("signup", {
+    signup: true,
+  });
 };
 module.exports.postSignUp = async (req, res, next) => {
   try {
-    let { username, password } = req.body;
+    let { name, age, email, username, password } = req.body;
     let dateuser = new Date().toLocaleDateString();
-    bcrypt.hash(password, saltRounds, async function (err, hash) {
-      await user.create({
-        username: username,
-        password: hash,
-        dateUser: dateuser,
+    if (
+      name.length > 0 &&
+      age != null &&
+      email != "" &&
+      username != "" &&
+      password != ""
+    ) {
+      bcrypt.hash(password, saltRounds, async function (err, hash) {
+        await user.create({
+          name: name,
+          age: age,
+          email: email,
+          username: username,
+          password: hash,
+          dateUser: dateuser,
+        });
+        req.flash("msg", "Sign up successful. Please login now!");
+        res.redirect("/user/auth/login");
       });
-      req.flash("msg", "Sign up successful. Please login now!");
+    } else {
+      req.flash("msg", "Fields not correctly specified!");
       res.redirect("/user/auth/login");
-    });
+    }
   } catch (err) {
     req.flash("info", `${err}`);
     next();

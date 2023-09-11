@@ -23,6 +23,27 @@
         </div>
 
         {{/if}}
+        {{#if signup}}
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            name="name"
+          />
+        </div><div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Age</label>
+          <input
+            type="number"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            name="age"
+          />
+        </div>
+
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
           <input
@@ -30,11 +51,22 @@
             class="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
+            name="email"
+          />
+        </div>
+        {{/if}}
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Select Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
             name="username"
           />
         </div>
         <div class="mb-3" style="position:relative">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <label for="exampleInputPassword1" class="form-label">Select Password</label>
           <input 
             type="password"
             class="form-control auth-password"

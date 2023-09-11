@@ -232,7 +232,6 @@ module.exports.getTicket = async (req, res, next) => {
 module.exports.postfollow = async (req, res, next) => {
   try {
     let { userid } = req.body;
-    console.log(userid);
     req.user.requested.push(userid);
     let upduser = await user.findOne({ _id: userid });
     upduser.requesting.push(req.user._id);
