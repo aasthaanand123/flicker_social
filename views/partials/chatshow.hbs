@@ -1,21 +1,21 @@
 <div class="chatshow w-50 d-flex flex-column">
-<div class="chatheading">
+  <div class="chatheading">
     <span>{{receiver.username}}</span>
-</div>
+  </div>
 
-<div class="chatshow msgs">
+  <div class="chatshow msgs">
     {{#if messages}}
-    {{#each messages as |message|}}
+      {{#each messages as |message|}}
         <div class="message">
-            <div class="msg">{{message.message}}</div>
-            <div class="timestamp">{{message.created_at}}</div>
+          <div class="msg" style="font-weight: 600;">{{message.message}}</div>
+          {{!-- <div class="timestamp">{{message.created_at}}</div> --}}
         </div>
-    {{/each}}
+      {{/each}}
     {{else}}
-    {{!-- <div> --}}
-    {{!-- <div class="d-flex flex-column justify-content-center align-items-center" style="height:40vh;">
+      {{! <div> }}
+      {{! <div class="d-flex flex-column justify-content-center align-items-center" style="height:40vh;">
     <div style="color:#02343f;font-size:1.2rem">No chats! Start one now</div>
-  </div> --}}
+  </div> }}
     {{/if}}
-</div>
+  </div>
 </div>

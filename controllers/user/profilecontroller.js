@@ -9,8 +9,7 @@ const post = require("../../models/post");
 const user = require("../../models/user");
 const issues = require("../../models/issues");
 const messages = require("../../models/messages");
-const socketids=require("../../models/socketids")
-const {io}=require("../../server");
+const { io } = require("../../server");
 const { ObjectId } = require("mongodb");
 module.exports.postaddpost = async (req, res, next) => {
   let { caption, comments } = req.body;
@@ -264,15 +263,13 @@ module.exports.postunfollow = async (req, res, next) => {
     next();
   }
 };
-module.exports.postcancelrequest=async (req, res, next) => {
+module.exports.postcancelrequest = async (req, res, next) => {
   try {
     let userid = req.body.userid;
-    req.user.requested= req.user.requested.filter(
-      (id) => !id.equals(userid)
-    );
+    req.user.requested = req.user.requested.filter((id) => !id.equals(userid));
     await req.user.save();
     let userupd = await user.findOne({ _id: userid });
-    userupd.requesting= userupd.requesting.filter(
+    userupd.requesting = userupd.requesting.filter(
       (id) => !id.equals(req.user._id)
     );
     userupd.save();
@@ -337,67 +334,80 @@ module.exports.postdeclinereq = async (req, res, next) => {
     next();
   }
 };
-module.exports.getchats= async (req, res, next) => {
+module.exports.getchats = async (req, res, next) => {
   try {
-    if(req.user){
-      let usersfollowing=await user.findOne({_id:req.user._id}).populate("following");
-      res.render("chats",{
-        username:req.user.username,
-        users:usersfollowing.following,
-      })
+    if (req.user) {
+      let usersfollowing = await user
+        .findOne({ _id: req.user._id })
+        .populate("following");
+      res.render("chats", {
+        username: req.user.username,
+        users: usersfollowing.following,
+      });
     }
-    
   } catch (err) {
     req.flash("info", `${err}`);
     next();
   }
 };
-module.exports.postchat=async (req, res, next) => {
+module.exports.postchat = async (req, res, next) => {
   try {
-    let userid=req.body.userid;
-    let usershow=await user.findOne({_id:userid});
-    let messagessent=await messages.find({sender:req.user._id,receiver: userid});
-    res.render("chatindividual",{
-      username:req.user.username,
-      user:req.user,
-      sender:req.user,
-      receiver:usershow,
-      messages:messagessent,
-    })
-  
+    let userid = req.body.userid;
+    let usershow = await user.findOne({ _id: userid });
+    let ar1 = [req.user._id, userid];
+    let messagessent = await messages
+      .find({
+        sender: { $in: ar1 },
+        receiver: { $in: ar1 },
+      })
+      .sort({ created_at: "asc" });
+    res.render("chatindividual", {
+      username: req.user.username,
+      user: req.user,
+      sender: req.user,
+      receiver: usershow,
+      messages: messagessent,
+    });
   } catch (err) {
     req.flash("info", `${err}`);
     next();
   }
 };
-io.on('connection', (socket) => {
-  const socketid=socket.id;
-  socket.on("user-connected",async(value)=>{
-      let createsocket=await socketids.create({
-        userid:value,
-        socketid:socketid,
-      })
-      await createsocket.save();
-      socket.emit("user-socket-recorded");
-  })
-  
+const connectedUsers = {};
+io.on("connection", (socket) => {
+  const socketid = socket.id;
+  socket.on("user-connected", (value) => {
+    connectedUsers[value] = socketid;
+    socket.emit("user-socket-recorded");
+  });
 
-  socket.on('chat-message', async (inputvalue) => {
+  socket.on("chat-message", async (inputvalue) => {
     try {
-      let {sender,receiver,msg}=inputvalue;
+      let { sender, receiver, msg } = inputvalue;
       const newMessage = await messages.create({
-        sender:sender,
-        receiver:receiver,
-        message:msg,
-      })
+        sender: sender,
+        receiver: receiver,
+        message: msg,
+      });
       await newMessage.save();
-
-      socket.emit('added-message', newMessage);
+      const receiverSocketId = connectedUsers[receiver];
+      const senderSocketId = connectedUsers[sender];
+      if (receiverSocketId) {
+        io.to(receiverSocketId).emit("added-message", newMessage);
+      }
+      if (senderSocketId) {
+        io.to(senderSocketId).emit("added-message", newMessage);
+      }
     } catch (error) {
       console.log(error);
     }
   });
-  socket.on("disconnect",async(userid)=>{
-    await socketids.deleteOne({userid:userid});
-  })
+  socket.on("disconnect", () => {
+    const userId = Object.keys(connectedUsers).find(
+      (key) => connectedUsers[key] === socketid
+    );
+    if (userId) {
+      delete connectedUsers[userId];
+    }
+  });
 });

@@ -1,27 +1,30 @@
-.chatshow,.chatbox{
-    background-color:#f0edcc;
-    border-radius: 10px; 
-    color:#02343f;
+.chatshow,
+.chatbox {
+  background-color: #f0edcc;
+  border-radius: 10px;
+  color: #02343f;
 }
 
 div.chatheading,
-.message{
-    background-color: #02343f;
-    color:#f0edcc;
-    border-radius:10px;
-    padding:1%;
-    width:100%;
+.message {
+  background-color: #02343f;
+  color: #f0edcc;
+  border-radius: 10px;
+  padding: 1%;
+  width: 100%;
 }
-.chatshow{
-    padding:1%;
-    min-height:50vh;
+.chatshow {
+  padding: 1%;
+  min-height: 50vh;
 }
-form.chatbox{
-    
-    color: #02343f;
-    background-color:#f0edcc;
+form.chatbox {
+  color: #02343f;
+  background-color: #f0edcc;
 }
-div.chatheading span{
-    font-weight: 600;
-    font-size: 1.2rem;
+div.chatheading span {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+.message {
+  margin-top: 10px;
 }
