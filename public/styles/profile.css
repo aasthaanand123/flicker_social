@@ -24,3 +24,20 @@
 .aside li a:hover {
   color: black;
 }
+.formaside{
+  padding:2%;
+  position:absolute;
+  background-color: #f0edcc;
+  width: 35%;
+  min-height:20%;
+  max-height: 60%;
+  top: 130px;
+ left:24%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index:20;
+  border:5px solid #02343f
+}
+

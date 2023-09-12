@@ -40,5 +40,5 @@ router.post("/acceptreq", profilecontroller.postacceptreq);
 router.post("/declinereq", profilecontroller.postdeclinereq);
 router.get("/chatssection",profilecontroller.getchats);
 router.post("/chat",profilecontroller.postchat);
-
+router.post("/addstory",profilecontroller.postaddstory);
 module.exports = router;

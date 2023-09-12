@@ -410,3 +410,12 @@ io.on("connection", (socket) => {
     }
   });
 });
+module.exports.postaddstory=async(req,res,next)=>{
+  try{
+
+  }
+  catch(err){
+    req.flash("info",`${err}`);
+    next()
+  }
+}

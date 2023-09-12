@@ -25,7 +25,6 @@ function overlayremove(overlayel,modalel){
        modalel.remove();
     })
 }
-
 function addoverlay(el,data){
     let overlay=document.createElement("div");
     overlay.classList.add("overlay")
