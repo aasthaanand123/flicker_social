@@ -185,3 +185,14 @@ module.exports.postupdatepost = async (req, res, next) => {
     next();
   }
 };
+module.exports.postfinddata=async (req, res, next) => {
+  let { inputvalue } = req.body;
+
+  try {
+    let postdata=await post.find({_id:{$ne: req.user._id},caption:{$in:[inputvalue]}});
+    res.json(postdata);
+  } catch (err) {
+    req.flash("info", `${err}`);
+    next();
+  }
+};

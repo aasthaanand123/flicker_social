@@ -7,6 +7,7 @@ const comments = require("../../models/comments");
 const multer = require("multer");
 const upload = multer({});
 const user = require("../../models/user");
+router.post("/finddata",postcontroller.postfinddata);
 router.post("/like", postcontroller.postlike);
 router.post("/dislike", postcontroller.postdislike);
 router.post("/comment", postcontroller.postdatacomment);

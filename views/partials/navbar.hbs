@@ -36,14 +36,15 @@
         <div class="d-flex">
           <li class="nav-item">
 
-            <div class="h-100 d-flex align-items-center justify-content-center">
+            <form method="post" action="/user/dash/postdata/finddata" class="searchform h-100 d-flex align-items-center justify-content-center">
               <input
                 type="text"
-                class="form-control"
+                class="form-control searchinput"
                 placeholder="Search people, posts"
                 aria-describedby="inputGroup-sizing-sm"
+                name="searchinput"
               />
-            </div>
+            </form>
 
           </li>
           <div class="ms-4 d-flex icons">
