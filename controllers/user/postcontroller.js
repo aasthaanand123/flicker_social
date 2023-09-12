@@ -189,7 +189,12 @@ module.exports.postfinddata=async (req, res, next) => {
   let { inputvalue } = req.body;
 
   try {
-    let postdata=await post.find({_id:{$ne: req.user._id},caption:{$in:[inputvalue]}});
+    const exactregex=new RegExp('^' + inputvalue + '$', 'i')
+    const partialregex = new RegExp(inputvalue, 'i'); 
+    let postdata=await post.find({userid:{$ne: req.user._id},$or:[
+      {caption:exactregex},
+      {caption:{$regex:partialregex}},
+    ]});
     res.json(postdata);
   } catch (err) {
     req.flash("info", `${err}`);

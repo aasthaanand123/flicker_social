@@ -14,4 +14,5 @@ router.post("/comment", postcontroller.postdatacomment);
 
 router.post("/update", upload.single("img-upd"), postcontroller.postupdatepost);
 router.post("/delete", postcontroller.postdeletepost);
+router.post("/getsearchpost",postcontroller.postpost)
 module.exports = router;
